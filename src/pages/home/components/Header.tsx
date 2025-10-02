@@ -18,7 +18,6 @@ const Header: React.FC = () => {
     return (
         <header className="bg-white shadow-md py-4 px-6">
             <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-                {/* Logo */}
                 <div className="flex-shrink-0">
                     <img
                         src="logo.png"
@@ -27,7 +26,6 @@ const Header: React.FC = () => {
                     />
                 </div>
 
-                {/* Busca */}
                 <Paper
                     component="form"
                     sx={{
@@ -54,10 +52,8 @@ const Header: React.FC = () => {
                     </IconButton>
                 </Paper>
 
-                {/* Redes sociais e carrinho */}
                 <div className="flex items-center gap-4">
 
-                    {/* Carrinho */}
                     <IconButton
                         sx={{
                             p: "10px",
@@ -70,7 +66,6 @@ const Header: React.FC = () => {
                         <ShoppingCartIcon fontSize="large" />
                     </IconButton>
 
-                    {/* Instagram */}
                     <IconButton
                         sx={{
                             p: "10px",
@@ -101,7 +96,6 @@ const Header: React.FC = () => {
                 </div>
             </div>
 
-            {/* Informações da padaria */}
             <div className="container mx-auto text-center mt-4">
                 <p className="text-sm md:text-base text-gray-600">
                     Rua Minas Gerais 2564, Joinville, SC
@@ -111,7 +105,6 @@ const Header: React.FC = () => {
                 </p>
             </div>
 
-            {/* Modal do carrinho */}
             <Cart
                 aria-labelledby="modal-carrinho-title"
                 aria-describedby="modal-carrinho-description"

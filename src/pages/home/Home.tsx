@@ -10,14 +10,8 @@ const Home: React.FC = () => {
     <div className="min-h-screen bg-yellow-50">
 
       <Header />
-      {/* Banner */}
       <Menu />
-
-      {/* Produtos */}
       <Main />
-
-      {/* Rodapé */}
-
       <Footer />
     </div>
   );

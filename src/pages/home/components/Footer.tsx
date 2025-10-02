@@ -7,7 +7,6 @@ export default function Footer() {
         <footer className="bg-[#AA2B56] text-white">
             <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                {/* Logo */}
                 <div className="flex flex-col items-center md:items-start">
                     <img
                         src="images/LOGOOFICIAL.png"
@@ -19,7 +18,6 @@ export default function Footer() {
                     </p>
                 </div>
 
-                {/* Links úteis */}
                 <div className="flex flex-col items-center md:items-start">
                     <h3 className="text-lg font-semibold mb-3">Links Úteis</h3>
                     <ul className="space-y-2 text-sm">
@@ -30,7 +28,6 @@ export default function Footer() {
                     </ul>
                 </div>
 
-                {/* Contato e redes sociais */}
                 <div className="flex flex-col items-center md:items-start">
                     <h3 className="text-lg font-semibold mb-3">Fale Conosco</h3>
                     <p className="text-sm flex items-center gap-2">
@@ -51,7 +48,6 @@ export default function Footer() {
                 </div>
             </div>
 
-            {/* Barra inferior */}
             <div className="bg-[#8A2046] text-center py-4 text-sm opacity-80">
                 © {new Date().getFullYear()} Maria’s Sweet. Todos os direitos reservados.
             </div>

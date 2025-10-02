@@ -4,16 +4,15 @@ import { useCategories } from '../../../context/CategoryContext';
 import { useCart } from '../../../context/CartContext';
 
 const Main: React.FC = () => {
-    const { addItem } = useCart();
+    const { cartItems, addItem, removeItem, clearCart, isCartOpen, closeCart } = useCart();
     const { categories } = useCategories();
     const { products } = useProducts();
 
     const productsByCategory = categories.map(category => ({
         ...category,
-        products: products.filter(product => product.idCategoria === category.id)
+        products: products.filter(product => product.idCategory === category.id)
     }));
 
-    // Estado para controlar a quantidade de cada produto
     const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
 
     const increaseQuantity = (id: number) => {
@@ -36,12 +35,10 @@ const Main: React.FC = () => {
                 {productsByCategory.map(category => (
                     <div key={category.id} id={`category-${category.id}`} className="mb-12">
 
-                        {/* Título da categoria */}
                         <h2 className="text-3xl font-bold mb-6 border-b-2 border-[#AA2B56] pb-2 text-gray-800">
-                            {category.nome}
+                            {category.name}
                         </h2>
 
-                        {/* Grid de produtos */}
                         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6">
                             {category.products.map(produto => {
                                 const quantity = quantities[produto.id] || 1;
@@ -53,16 +50,15 @@ const Main: React.FC = () => {
                                     >
                                         <img
                                             src={produto.img}
-                                            alt={produto.nome}
+                                            alt={produto.name}
                                             className="w-full h-48 object-cover rounded-lg"
                                         />
-                                        <h4 className="text-xl font-semibold mt-4 text-gray-800">{produto.nome}</h4>
-                                        <p className="text-gray-600 mt-2 flex-grow">{produto.descricao}</p>
+                                        <h4 className="text-xl font-semibold mt-4 text-gray-800">{produto.name}</h4>
+                                        <p className="text-gray-600 mt-2 flex-grow">{produto.desc}</p>
                                         <p className="text-[#AA2B56] font-bold mt-2 text-lg">
-                                            R$ {produto.preco}
+                                            R$ {produto.price}
                                         </p>
 
-                                        {/* Controle de quantidade */}
                                         <div className="flex items-center mt-4 gap-2">
                                             <button
                                                 onClick={() => decreaseQuantity(produto.id)}
@@ -79,12 +75,21 @@ const Main: React.FC = () => {
                                             </button>
                                         </div>
 
-                                        <button
-                                            onClick={() => addItem(produto.id, quantity)}
-                                            className="mt-4 bg-[#AA2B56] text-white font-semibold py-2 rounded-lg hover:bg-[#4A7C82] transition-colors duration-200"
-                                        >
-                                            Adicionar ao Carrinho
-                                        </button>
+                                        {Object.values(cartItems).some(item => item.productId === produto.id) ? (
+                                            <button
+                                                onClick={() => removeItem(produto.id)}
+                                                className="mt-4 bg-red-600 text-white font-semibold py-2 rounded-lg hover:bg-red-700 transition-colors duration-200"
+                                            >
+                                                Remover do Carrinho
+                                            </button>
+                                        ) : (
+                                            <button
+                                                onClick={() => addItem(produto.id, quantity)}
+                                                className="mt-4 bg-[#AA2B56] text-white font-semibold py-2 rounded-lg hover:bg-[#4A7C82] transition-colors duration-200"
+                                            >
+                                                Adicionar ao Carrinho
+                                            </button>
+                                        )}
                                     </div>
                                 );
                             })}

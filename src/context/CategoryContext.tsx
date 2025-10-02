@@ -24,12 +24,12 @@ export const CategoryProvider: React.FC<CategoryProviderProps> = ({ children }) 
             setSelectedCategory(defaultCategory);
         }
     }, [categories, selectedCategory]);
-    
+
     useEffect(() => {
         async function loadCategories() {
             try {
                 const result = await fetchCategories();
-                console.log('API result:', result);
+                console.log('API result cateogry:', result);
                 if (result.success) {
                     setCategories(result.data);
                 }
@@ -39,16 +39,14 @@ export const CategoryProvider: React.FC<CategoryProviderProps> = ({ children }) 
         }
 
         loadCategories();
-    }, []); // <- array vazio, executa só uma vez
+    }, []);
 
     useEffect(() => {
-        console.log(categories); // Agora mostra o valor atualizado
+        console.log(categories);
     }, [categories]);
 
     return (
         <CategoryContext.Provider value={{ categories, selectedCategory, setSelectedCategory }}>
-            {/* Render children components */}
-            {/* This allows any component within this provider to access the categories and selectedCategory */}
             {children}
         </CategoryContext.Provider>
     );

@@ -33,16 +33,16 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) =>
         }
 
         loadProducts();
-    }, []); // <- array vazio, executa só uma vez
+    }, []);
 
     useEffect(() => {
-        console.log(products); // Agora mostra o valor atualizado
+        console.log(products);
     }, [products]);
 
     useEffect(() => {
         if (selectedCategory) {
             setFilteredProducts(products.filter(
-                (product) => product.idCategoria === selectedCategory.id
+                (product) => product.idCategory === selectedCategory.id
             ));
         } else {
             setFilteredProducts(products);
@@ -50,7 +50,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) =>
     }, [products, selectedCategory]);
 
     useEffect(() => {
-        console.log(filteredProducts); // Agora mostra o valor atualizado
+        console.log(filteredProducts);
     }, [filteredProducts]);
 
     return (

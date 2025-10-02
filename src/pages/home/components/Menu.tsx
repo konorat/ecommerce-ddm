@@ -14,7 +14,7 @@ const Menu: React.FC = () => {
         const element = document.getElementById(`category-${id}`);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            setIsOpen(false); // Fecha o menu ao clicar
+            setIsOpen(false);
         }
     };
 
@@ -22,10 +22,9 @@ const Menu: React.FC = () => {
         <nav className="bg-white shadow-md sticky top-0 w-full z-50">
             <div className="container mx-auto flex justify-between items-center py-3 px-4">
 
-                {/* Logo ou nome */}
+
                 <div className="text-2xl font-bold text-[#AA2B56]">Doce de Maria</div>
 
-                {/* Carrinho */}
                 <IconButton
                     sx={{
                         p: "10px",
@@ -38,7 +37,6 @@ const Menu: React.FC = () => {
                     <ShoppingCartIcon fontSize="large" />
                 </IconButton>
 
-                {/* Botão hamburger para celular */}
                 <button
                     className="md:hidden text-[#4A7C82]"
                     onClick={() => setIsOpen(!isOpen)}
@@ -46,7 +44,6 @@ const Menu: React.FC = () => {
                     {isOpen ? <X size={28} /> : <MenuIcon size={28} />}
                 </button>
 
-                {/* Menu principal */}
                 <ul
                     className={`
                         md:flex md:flex-row md:gap-6 md:items-center
@@ -60,7 +57,7 @@ const Menu: React.FC = () => {
                                 onClick={() => handleScroll(item.id)}
                                 className="px-4 py-2 text-[#4A7C82] font-medium hover:text-[#AA2B56] transition-colors duration-200 w-full text-left md:text-center"
                             >
-                                {item.nome}
+                                {item.name}
                             </button>
                         </li>
                     ))}

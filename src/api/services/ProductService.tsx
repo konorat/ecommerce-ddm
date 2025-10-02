@@ -3,7 +3,7 @@ import type { Product } from '../../types/Product';
 
 export async function fetchProducts(): Promise<{ success: boolean; data: Product[]; message?: string }> {
     try {
-        const response = await axios.get('http://localhost:5000/api/produtos');
+        const response = await axios.get('http://localhost:5000/api/products');
 
         if (response.status === 200 || response.status === 304) {
             const rawData = Array.isArray(response.data)
@@ -12,15 +12,15 @@ export async function fetchProducts(): Promise<{ success: boolean; data: Product
 
             const producuts = rawData.map((item: any): Product => ({
                 id: item.id,
-                nome: item.nome,
-                descricao: item.descricao,
-                preco: item.preco,
+                name: item.name,
+                desc: item.desc,
+                price: item.price,
                 un: item.un,
                 img: item.img,
-                codigo: item.codigo,
-                ativo: item.ativo,
-                idCategoria: item.idCategoria,
-                createdAt: item.createdAt, // or new Date(item.createdAt) if you prefer Date
+                code: item.code,
+                paused: item.paused,
+                idCategory: item.idCategory,
+                createdAt: item.createdAt,
                 updatedAt: item.updatedAt,
             }));
 

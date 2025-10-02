@@ -3,7 +3,7 @@ import type { Category } from '../../types/Category';
 
 export async function fetchCategories(): Promise<{ success: boolean; data: Category[]; message?: string }> {
   try {
-    const response = await axios.get('http://localhost:5000/api/categoria');
+    const response = await axios.get('http://localhost:5000/api/categories');
 
     if (response.status === 200 || response.status === 304) {
       const rawData = Array.isArray(response.data)
@@ -12,8 +12,8 @@ export async function fetchCategories(): Promise<{ success: boolean; data: Categ
 
       const categories = rawData.map((item: any): Category => ({
         id: item.id,
-        nome: item.nome,       // <-- use nome, não name
-        descricao: item.descricao,
+        name: item.name,
+        desc: item.desc,
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,
       }));
